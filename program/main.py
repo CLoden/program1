@@ -3,8 +3,8 @@ from names import name
 
 def main():
 
-    name_search_db(name)
-    gender_search_db(name)
+    name_query = name_search_db(name)
+    gender_query = gender_search_db(name)
 
 main()
 
@@ -14,28 +14,28 @@ main()
 
 # collecting inputs
 
-def name_search_db():
+def name_search_db(name, name_query):
     while True:
         try:
-            name_search = input("Enter the name you're searching for: ")
-            if name_search not in name:
+            name_query = input("Enter the name you're searching for: ")
+            if name_query not in name:
                 print("Name not found in database. Please try again.")
                 name_search = input("Enter the name you're searching for: ")
             else:
-                for name_search in name:
-                    print(name_search)
+                for name_query in name.readNames():
+                    print(name_query["Name"])
         except:
             print("Invalid input")
 
-def gender_search_db():
-    gender = ''
-    gender = input("Enter the gender you're searching for. Either M or F: ")
-    gender = gender.upper()
-    while gender != 'M' and gender != 'F':
+def gender_search_db(name, gender_query):
+    gender_query = ''
+    gender_query = input("Enter the gender you're searching for. Either M or F: ")
+    gender_query = gender_query.upper()
+    while gender_query != 'M' and gender_query != 'F':
         print("Please enter M or F for gender.")
-        gender = input("Enter the gender you're searching for. Either M or F: ")
-        gender = gender.upper()
+        gender_query = input("Enter the gender you're searching for. Either M or F: ")
+        gender_query = gender_query.upper()
     else:
-        for gender in name:
-            print(gender)
+        for gender_query in name.readNames():
+            print(gender_query["Gender"])
 
